@@ -1,0 +1,17 @@
+# Entorno virtual (cada quien crea el suyo con pip install -r requirements.txt)
+fastAPI/
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Base de datos local de SQLite
+*.db
+
+# Variables de entorno / secretos
+.env
+
+# Editor
+.vscode/

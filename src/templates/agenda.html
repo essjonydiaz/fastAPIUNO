@@ -1,0 +1,43 @@
+<!-- src/templates/agenda.html -->
+{% extends "base.html" %}
+
+{% block title %}Contactos - Panel Jinja2{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Lista de Contactos (Renderizada con Jinja2)</h4>
+        <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-info text-dark">{{ contactos|length }} Registros</span>
+            <a class="btn btn-primary btn-sm" href="/views/agenda/nuevo">+ Nuevo contacto</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th><th>Nombre</th><th>Teléfono</th><th>Correo</th><th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in contactos %}
+                <tr>
+                    <td><strong>#{{ c.id }}</strong></td>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.telefono }}</td>
+                    <td><a href="mailto:{{ c.mail }}">{{ c.mail }}</a></td>
+                    <td class="text-end">
+                        <form method="post" action="/views/agenda/{{ c.id }}/eliminar"
+                              onsubmit="return confirm('¿Eliminar este contacto?');">
+                            <button class="btn btn-outline-danger btn-sm" type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="5" class="text-center text-muted">No hay contactos registrados</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

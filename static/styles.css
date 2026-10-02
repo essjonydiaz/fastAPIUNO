@@ -1,0 +1,5 @@
+/* static/styles.css - estilos propios además de Bootstrap */
+.form-card {
+    max-width: 480px;
+    margin: 0 auto;
+}

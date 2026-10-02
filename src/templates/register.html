@@ -1,0 +1,40 @@
+<!-- src/templates/register.html -->
+{% extends "base.html" %}
+
+{% block title %}Crear cuenta{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm form-card">
+    <div class="card-header bg-white">
+        <h4 class="mb-0">Crear cuenta</h4>
+    </div>
+    <div class="card-body">
+        {% if errores %}
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                {% for e in errores %}<li>{{ e }}</li>{% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post" action="/views/register">
+            <div class="mb-3">
+                <label class="form-label" for="username">Usuario</label>
+                <input class="form-control" id="username" name="username" required minlength="3"
+                       value="{{ datos.username or '' }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Correo</label>
+                <input class="form-control" id="email" name="email" type="email" required
+                       value="{{ datos.email or '' }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Contraseña (mínimo 6 caracteres)</label>
+                <input class="form-control" id="password" name="password" type="password" required minlength="6">
+            </div>
+            <button class="btn btn-primary" type="submit">Registrarme</button>
+            <a class="btn btn-link" href="/views/login">Ya tengo cuenta</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

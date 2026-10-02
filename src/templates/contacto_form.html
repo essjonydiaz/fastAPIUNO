@@ -1,0 +1,41 @@
+<!-- src/templates/contacto_form.html (Reto 3) -->
+{% extends "base.html" %}
+
+{% block title %}Nuevo contacto{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm form-card">
+    <div class="card-header bg-white">
+        <h4 class="mb-0">Nuevo contacto</h4>
+    </div>
+    <div class="card-body">
+        {% if errores %}
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                {% for e in errores %}<li>{{ e }}</li>{% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <form method="post" action="/views/agenda/nuevo">
+            <div class="mb-3">
+                <label class="form-label" for="nombre">Nombre</label>
+                <input class="form-control" id="nombre" name="nombre" required minlength="2" maxlength="50"
+                       value="{{ datos.nombre or '' }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="telefono">Teléfono (7 a 15 dígitos)</label>
+                <input class="form-control" id="telefono" name="telefono" required pattern="\d{7,15}"
+                       value="{{ datos.telefono or '' }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="mail">Correo</label>
+                <input class="form-control" id="mail" name="mail" type="email" required
+                       value="{{ datos.mail or '' }}">
+            </div>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a class="btn btn-link" href="/views/agenda">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

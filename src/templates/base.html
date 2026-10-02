@@ -1,0 +1,27 @@
+<!-- src/templates/base.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Mi Agenda{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/views/agenda">Agenda Institucional</a>
+            {% if usuario %}
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-white">@{{ usuario.username }}</span>
+                <a class="btn btn-outline-light btn-sm" href="/views/logout">Cerrar sesión</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
